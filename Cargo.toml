@@ -1,0 +1,18 @@
+[package]
+name = "thesis"
+version = "0.1.0"
+edition = "2021"
+
+[dev-dependencies]
+criterion = { version = "0.4", features = ["html_reports"] }
+
+[[bench]]
+name = "my_benchmark"
+harness = false
+
+[dependencies]
+cxx = "1.0.95"
+rand = "0.8.5"
+
+[build-dependencies]
+cxx-build = "1.0.95"
