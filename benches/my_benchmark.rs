@@ -24,23 +24,11 @@ fn benchmark_list(c: &mut Criterion) {
             |b, &n| b.iter(|| cpp_bench::benchmark_linked_list_manual(n)),
         );
 
-        // group.bench_with_input(
-        //     BenchmarkId::new("linked-list-rust-manual", n),
-        //     &n,
-        //     |b, &n| b.iter(|| rust_bench::benchmark_linked_list_manual(n)),
-        // );
-
         group.bench_with_input(
             BenchmarkId::new("linked-list-rust-arena", n),
             &n,
             |b, &n| b.iter(|| rust_bench::benchmark_linked_list_arena(n)),
         );
-
-        // group.bench_with_input(
-        //     BenchmarkId::new("double-linked-list-rust", n),
-        //     &n,
-        //     |b, &n| b.iter(|| rust_bench::benchmark_double_linked_list_arena(n)),
-        // );
     }
 }
 
@@ -77,12 +65,6 @@ fn benchmark_tree(c: &mut Criterion) {
             &n,
             |b, &n| b.iter(|| rust_bench::benchmark_tree_arena(n, rand_arr.clone())),
         );
-
-        // group.bench_with_input(
-        //     BenchmarkId::new("tree-rust-manual", n),
-        //     &n,
-        //     |b, &_n| b.iter(|| rust_bench::benchmark_tree_manual(rand_arr.clone())),
-        // );
     }
 }
 

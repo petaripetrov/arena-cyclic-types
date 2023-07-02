@@ -150,102 +150,6 @@ void List<T>::print()
     }
 }
 
-// template <typename T>
-// class DoubleLinkedList // TODO add doubly linked version
-// {
-// private:
-//     Node<T> *head;
-//     Node<T> *tail;
-
-// public:
-//     DoubleLinkedList()
-//     {
-//         this->head = NULL;
-//         this->tail = NULL;
-//     }
-
-//     ~DoubleLinkedList()
-//     {
-//         if (this->head != NULL)
-//         {
-//             delete (this->head);
-//         }
-
-//         if (this->tail != NULL)
-//         {
-//             delete (this->tail);
-//         }
-//     }
-
-//     void push(Node<T> *data);
-//     void print();
-//     void print_reverse();
-
-//     void null_top()
-//     {
-//         this->head = NULL;
-//         this->tail = NULL;
-//     }
-// };
-
-// template <typename T>
-// void DoubleLinkedList<T>::push(Node<T> *data)
-// {
-//     if (this->head == NULL)
-//     {
-//         this->head = data;
-//         return;
-//     }
-
-//     if (this->tail == NULL)
-//     {
-//         this->tail = data;
-//         this->head->right = this->tail;
-//         return;
-//     }
-
-//     this->tail->right = data;
-//     data->left = this->tail;
-//     this->tail = data;
-
-//     // Node<T> *temp = this->head;
-
-//     // while (temp != NULL)
-//     // {
-//     //     if (temp->right == NULL)
-//     //     {
-//     //         temp->right = data;
-//     //         break;
-//     //     }
-
-//     //     temp = temp->right;
-//     // }
-// }
-
-// template <typename T>
-// void DoubleLinkedList<T>::print()
-// {
-//     Node<T> *temp = this->head;
-
-//     while (temp != NULL)
-//     {
-//         std::cout << "Node with value :: " << temp->data << "\n";
-//         temp = temp->right;
-//     }
-// }
-
-// template <typename T>
-// void DoubleLinkedList<T>::print_reverse()
-// {
-//     Node<T> *temp = this->tail;
-
-//     while (temp != NULL)
-//     {
-//         std::cout << "Node with value :: " << temp->data << "\n";
-//         temp = temp->left;
-//     }
-// }
-
 template <typename T>
 class Tree
 {
@@ -349,29 +253,10 @@ void benchmark_linked_list_arena(size_t n)
         list->push(val);
     }
 
-    // list->print();
-
     delete (arena);
     list->null_top();
     free(list);
 }
-
-// void benchmark_double_linked_list_arena(size_t n)
-// {
-//     Arena<Node<size_t>> *arena = new Arena<Node<size_t>>(n);
-//     DoubleLinkedList<size_t> *list = new DoubleLinkedList<size_t>;
-
-//     for (size_t i = 0; i < n; i++)
-//     {
-//         Node<size_t> *val = new (arena->allocate()) Node<size_t>(i);
-//         list->push(val);
-//     }
-
-//     // list->print();
-
-//     delete (arena);
-//     list->null_top();
-// }
 
 void benchmark_tree_arena(size_t n, rust::Vec<uint32_t> arr)
 {
@@ -383,8 +268,6 @@ void benchmark_tree_arena(size_t n, rust::Vec<uint32_t> arr)
         Node<size_t> *val = new (arena->allocate()) Node<size_t>(num);
         tree->push(val);
     }
-
-    // tree->print();
 
     delete (arena);
     tree->null_root();
@@ -400,8 +283,6 @@ void benchmark_linked_list_manual(size_t n)
         list->push(val);
     }
 
-    // list->print();
-
     delete (list);
 }
 
@@ -415,7 +296,5 @@ void benchmark_tree_manual(rust::Vec<uint32_t> arr)
         tree->push(val);
     }
 
-    // tree->print();
-
-    delete (tree); // WOOOOHOO LIFETIMES
+    delete (tree);
 }

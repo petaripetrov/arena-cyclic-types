@@ -164,4 +164,6 @@ pub fn benchmark_tree_arena<T: Display + Ord>(n: usize, arr: Vec<T>) {
         });
         tree.push(temp);
     }
+
+    tree.print();
 }
