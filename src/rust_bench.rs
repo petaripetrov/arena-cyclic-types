@@ -2,8 +2,10 @@ use std::{cell::Cell, fmt::Display};
 
 use crate::Arena;
 
+/// Where the magic happens, this type signature allows for cyclic types
 pub type Link<'a, T> = Cell<Option<&'a T>>;
 
+/// Simple Cyclic Node
 pub struct Node<'a, T: Display> {
     pub data: T,
     pub parent: Link<'a, Node<'a, T>>,
@@ -11,6 +13,7 @@ pub struct Node<'a, T: Display> {
     pub left: Link<'a, Node<'a, T>>,
 }
 
+/// Basic linked list with back reference to the previous element.
 pub struct List<'a, T: Display> {
     pub head: Link<'a, Node<'a, T>>,
 }
@@ -55,6 +58,7 @@ impl<'a, T: Display> List<'a, T> {
     }
 }
 
+/// Basic tree with back reference to the node parent.
 pub struct Tree<'a, T: Display + Ord> {
     pub root: Link<'a, Node<'a, T>>,
 }
@@ -121,7 +125,9 @@ impl<'a, T: Display + Ord> Tree<'a, T> {
     }
 }
 
-
+/// Benchmark linked list with elements
+/// # Arguments
+/// * `n` - A usize for the capacity of the list and arena 
 pub fn benchmark_linked_list_arena(n: usize) {
     let arena = Arena::new(n);
     let list = List {
@@ -138,8 +144,12 @@ pub fn benchmark_linked_list_arena(n: usize) {
         list.push(temp);
     }
 }
-
-pub fn benchmark_tree_arena(n: usize, arr: Vec<u32>) {
+/// Benchmark linked list with elements
+/// # Arguments
+/// * `n` - A usize for the capacity of the arena
+/// * arr - Generic vector, expected to be randomized. Non-randomized vectors 
+///         would lead to a performance penalty due to the pushing algorithm 
+pub fn benchmark_tree_arena<T: Display + Ord>(n: usize, arr: Vec<T>) {
     let arena = Arena::new(n);
     let tree = Tree {
         root: Cell::new(None),
