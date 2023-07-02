@@ -1,8 +1,0 @@
-cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-authors:
-  - family-names: Petrov
-    given-names: Petar
-version: 1.0.0
-date-released: "2023-07-02"
-repository-code: "https://github.com/petaripetrov/arena-cyclic-types"
