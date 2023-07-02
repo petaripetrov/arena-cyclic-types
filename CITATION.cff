@@ -5,4 +5,4 @@ authors:
     given-names: Petar
 version: 1.0.0
 date-released: "2023-07-02"
-repository-code: https://github.com/petaripetrov/arena-cyclic-types
+repository-code: "https://github.com/petaripetrov/arena-cyclic-types"
